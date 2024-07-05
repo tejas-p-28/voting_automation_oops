@@ -6,3 +6,7 @@ class Admin:
     def add_admin(self,username,password):
         self.db.db_cursor.execute('''insert into admin (username,password) values(?,?)''',(username,password))
         self.db.dbc_in_file.commit()
+
+    def add_constituency(self,name):
+        self.db.db_cursor.execute('''insert into constituency (name) values(?)''',[name])
+        self.db.dbc_in_file.commit()

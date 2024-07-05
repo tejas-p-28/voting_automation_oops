@@ -3,7 +3,12 @@ class Database:
     def __init__(self,dbc_in_file):
         self.dbc_in_file = sqlite3.connect('voting_db.db')
         self.db_cursor = self.dbc_in_file.cursor()
+    
     def create_tables(self):
+        self.db_cursor.execute('''create table if not exists conduct_election
+            (id integer primary key,
+            start_date date not null,
+            end_date date not null)''')
         self.db_cursor.execute('''create table if not exists admin
             (id integer primary key,
             username varchar(10) not null,
