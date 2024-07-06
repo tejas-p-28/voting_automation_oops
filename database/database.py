@@ -8,7 +8,8 @@ class Database:
         self.db_cursor.execute('''create table if not exists conduct_election
             (id integer primary key,
             start_date date not null,
-            end_date date not null)''')
+            end_date date not null,
+            name text)''')
         self.db_cursor.execute('''create table if not exists admin
             (id integer primary key,
             username varchar(10) not null,
@@ -19,9 +20,9 @@ class Database:
             password integer not null)''')
         self.db_cursor.execute('''create table if not exists voters
             (id integer primary key,
-            name varchar(20) not null,
-            date_of_birth text not null,
-            constituency varchar(20) not null)''')
+            name varchar(20),
+            date_of_birth text,
+            constituency varchar(20) )''')
         self.db_cursor.execute('''create table if not exists parties
             (id integer primary key,
             name text not null)''')
