@@ -22,7 +22,8 @@ class Database:
             (id integer primary key,
             name varchar(20),
             date_of_birth text,
-            constituency varchar(20) )''')
+            const_id int,
+            FOREIGN KEY(const_id) REFERENCES constituency(id) )''')
         self.db_cursor.execute('''create table if not exists parties
             (id integer primary key,
             name text not null)''')
