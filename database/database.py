@@ -22,8 +22,11 @@ class Database:
             (id integer primary key,
             name varchar(20),
             date_of_birth text,
+            voted integer default 0,
+            const_name text,
             const_id int,
-            FOREIGN KEY(const_id) REFERENCES constituency(id) )''')
+            FOREIGN KEY (const_name) REFERENCES parties(name),
+            FOREIGN KEY (const_id) REFERENCES constituency(id) )''')
         self.db_cursor.execute('''create table if not exists parties
             (id integer primary key,
             name text not null)''')
@@ -36,8 +39,8 @@ class Database:
             party_id integer not null,
             FOREIGN KEY (party_id) REFERENCES parties (id))''')
         self.db_cursor.execute('''create table if not exists votes
-            (voter_id integer primary key ,
-            candidate_id interger not null,
+            (voter_id integer,
+            candidate_id integer ,
             FOREIGN KEY (voter_id) REFERENCES voters(id),
             FOREIGN KEY (candidate_id) REFERENCES candidates(id))''')
         self.dbc_in_file.commit()

@@ -26,7 +26,9 @@ class Admin:
         self.db.dbc_in_file.commit()
     def add_party(self,party_name):
         self.db.db_cursor.execute('''insert into parties (name) values (?)''',[party_name])
+        self.db.db_cursor.execute('''update voters SET const_name = ?''',[party_name])
         self.db.dbc_in_file.commit()
     def add_candidate(self,candidate_name,party_id):
         self.db.db_cursor.execute('''insert into candidates (name,party_id) values (?,?)''',(candidate_name,party_id))
         self.dbc_in_file.commit()
+    
